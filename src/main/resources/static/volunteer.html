@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寻亲网站 - 志愿者招募</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e94c3d;
+            --primary-hover: #c7362a;
+            --secondary-color: #f39c12;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --warning-color: #f1c40f;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+            --font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            --h1-font-size: 2.5rem;
+            --h2-font-size: 2rem;
+            --h3-font-size: 1.75rem;
+            --h4-font-size: 1.5rem;
+            --h5-font-size: 1.25rem;
+            --h6-font-size: 1rem;
+            --body-font-size: 1rem;
+            --small-font-size: 0.875rem;
+            --line-height: 1.6;
+            --heading-line-height: 1.3;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            min-height: 100vh;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            font-size: var(--body-font-size);
+            line-height: var(--line-height);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: var(--heading-line-height);
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: var(--h1-font-size);
+        }
+        
+        h2 {
+            font-size: var(--h2-font-size);
+        }
+        
+        h3 {
+            font-size: var(--h3-font-size);
+        }
+        
+        h4 {
+            font-size: var(--h4-font-size);
+        }
+        
+        h5 {
+            font-size: var(--h5-font-size);
+        }
+        
+        h6 {
+            font-size: var(--h6-font-size);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        
+        small {
+            font-size: var(--small-font-size);
+            color: var(--gray-color);
+        }
+        
+        .text-muted {
+            color: var(--gray-color) !important;
+        }
+        
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+        
+        .text-success {
+            color: var(--success-color) !important;
+        }
+        
+        .text-danger {
+            color: var(--danger-color) !important;
+        }
+        
+        .text-warning {
+            color: var(--secondary-color) !important;
+        }
+        
+        .font-weight-bold {
+            font-weight: 700 !important;
+        }
+        
+        .font-weight-semibold {
+            font-weight: 600 !important;
+        }
+        
+        .font-weight-medium {
+            font-weight: 500 !important;
+        }
+        
+        .login-container {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #c0392b 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            max-width: 400px;
+            width: 100%;
+            padding: 30px;
+            transition: var(--transition);
+        }
+        
+        .login-card:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+        }
+        
+        .login-card h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .form-control {
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 12px 16px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(233, 76, 61, 0.1);
+            outline: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary {
+            background-color: var(--gray-color);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-1px);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            transition: var(--transition);
+            border-radius: 4px;
+            margin: 0 4px;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link.active {
+            font-weight: 600;
+            color: var(--primary-color) !important;
+            background-color: rgba(233, 76, 61, 0.1);
+        }
+        
+        .dashboard-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .role-badge {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .badge-admin { background: var(--danger-color); color: white; }
+        .badge-seeker { background: var(--accent-color); color: white; }
+        .badge-volunteer { background: var(--success-color); color: white; }
+        .badge-clue { background: var(--secondary-color); color: var(--dark-color); }
+        
+        .page-content {
+            min-height: 80vh;
+            background-color: var(--light-color);
+        }
+        
+        .sidebar {
+            min-height: 100vh;
+            background: var(--white);
+            border-right: 1px solid var(--light-gray);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .sidebar .nav-link {
+            padding: 12px 15px;
+            border-radius: var(--border-radius);
+            margin: 4px 0;
+            transition: var(--transition);
+        }
+        
+        .sidebar .nav-link:hover {
+            background: rgba(233, 76, 61, 0.08);
+            color: var(--primary-color) !important;
+        }
+        
+        .sidebar .nav-link.active {
+            background: var(--primary-color);
+            color: white !important;
+            font-weight: 600;
+        }
+        
+        .missing-person-card {
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            background-color: var(--white);
+        }
+        
+        .missing-person-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .missing-person-card .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .missing-person-card:hover .card-img-top {
+            transform: scale(1.03);
+        }
+        
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        
+        .status-pending { background: var(--warning-color); color: var(--dark-color); }
+        .status-approved { background: var(--success-color); color: white; }
+        .status-rejected { background: var(--danger-color); color: white; }
+        
+        /* 视觉层次和动画效果 */
+        .card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .card-img-top {
+            transition: var(--transition);
+        }
+        
+        .card:hover .card-img-top {
+            transform: scale(1.03);
+        }
+        
+        /* 按钮动画效果 */
+        .btn {
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* 导航栏效果 */
+        .navbar {
+            transition: var(--transition);
+            background-color: var(--white) !important;
+        }
+        
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+            background-color: var(--white) !important;
+        }
+        
+        /* 导航栏布局 */
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-nav.me-auto {
+            flex-grow: 1;
+        }
+        
+        /* 滚动动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 列表项悬停效果 */
+        .list-group-item {
+            transition: var(--transition);
+            border-radius: var(--border-radius) !important;
+            margin-bottom: 8px;
+            border: 1px solid var(--light-gray) !important;
+        }
+        
+        .list-group-item:hover {
+            background-color: rgba(233, 76, 61, 0.05);
+            transform: translateX(5px);
+        }
+        
+        /* 徽章动画效果 */
+        .role-badge, .status-badge {
+            transition: var(--transition);
+        }
+        
+        .role-badge:hover, .status-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        /* 输入框焦点效果 */
+        .form-control:focus {
+            animation: pulse 0.3s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(233, 76, 61, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(233, 76, 61, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(233, 76, 61, 0);
+            }
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 成功案例卡片增强样式 */
+        .card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-img-top {
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+        
+        /* 渐变背景增强 */
+        .bg-gradient-to-br {
+            background: linear-gradient(135deg, var(--from-color), var(--to-color));
+        }
+        
+        .from-red-400 { --from-color: #f87171; }
+        .to-red-600 { --to-color: #dc2626; }
+        
+        .from-blue-400 { --from-color: #60a5fa; }
+        .to-blue-600 { --to-color: #2563eb; }
+        
+        .from-purple-400 { --from-color: #c084fc; }
+        .to-purple-600 { --to-color: #9333ea; }
+        
+        .from-green-400 { --from-color: #4ade80; }
+        .to-green-600 { --to-color: #16a34a; }
+        
+        .from-orange-400 { --from-color: #fb923c; }
+        .to-orange-600 { --to-color: #ea580c; }
+        
+        .from-pink-400 { --from-color: #f472b6; }
+        .to-pink-600 { --to-color: #db2777; }
+        
+        /* 成功案例标签样式 */
+        .bg-primary { background-color: var(--primary-color); }
+        .bg-success { background-color: var(--success-color); }
+        .bg-warning { background-color: var(--warning-color); }
+        .bg-info { background-color: var(--accent-color); }
+        .bg-secondary { background-color: var(--secondary-color); }
+        .bg-danger { background-color: var(--danger-color); }
+        
+        /* 卡片悬停时的图标动画 */
+        .card:hover .fa-heart,
+        .card:hover .fa-users,
+        .card:hover .fa-dna,
+        .card:hover .fa-child,
+        .card:hover .fa-user-friends,
+        .card:hover .fa-heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* 卡片内容增强 */
+        .card-title {
+            transition: color 0.3s ease;
+        }
+        
+        .card:hover .card-title {
+            color: var(--primary-color);
+        }
+        
+        /* 按钮悬停效果增强 */
+        .btn-primary:hover {
+            box-shadow: 0 8px 20px rgba(233, 76, 61, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* 位置图标样式 */
+        .fa-map-marker-alt {
+            color: var(--primary-color);
+        }
+        
+        /* 日历图标样式 */
+        .fa-calendar-alt {
+            margin-right: 4px;
+        }
+        
+        /* 卡片底部信息样式 */
+        .card-body .flex {
+            align-items: center;
+        }
+        
+        /* 响应式卡片优化 */
+        @media (max-width: 768px) {
+            .card:hover {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* 加载动画 */
+        .loader {
+            border: 3px solid var(--light-gray);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 卡片内容动画 */
+        .card-body {
+            transition: var(--transition);
+        }
+        
+        .card:hover .card-body {
+            transform: translateY(-5px);
+        }
+        
+        /* 导航链接动画 */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* 英雄区增强样式 */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(233, 76, 61, 0.9), rgba(199, 54, 42, 0.8));
+            z-index: 1;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero p {
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 英雄区按钮增强 */
+        .hero .btn {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .hero .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+        
+        .hero .btn:hover::before {
+            left: 100%;
+        }
+        
+        /* 英雄区背景动画 */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            :root {
+                --h1-font-size: 2rem;
+                --h2-font-size: 1.5rem;
+                --h3-font-size: 1.25rem;
+                --h4-font-size: 1.1rem;
+                --h5-font-size: 1rem;
+                --h6-font-size: 0.9rem;
+                --body-font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .dashboard-card {
+                margin-bottom: 20px;
+            }
+            
+            .sidebar {
+                min-height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--light-gray);
+                box-shadow: none;
+            }
+            
+            .sidebar .nav-link {
+                padding: 8px 12px;
+            }
+            
+            .missing-person-card .card-img-top {
+                height: 180px;
+            }
+            
+            .footer {
+                text-align: center;
+            }
+            
+            .footer .col-md-4 {
+                margin-bottom: 20px;
+            }
+            
+            .login-card {
+                padding: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            :root {
+                --h1-font-size: 1.8rem;
+                --h2-font-size: 1.3rem;
+                --h3-font-size: 1.1rem;
+                --h4-font-size: 1rem;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .missing-person-card .card-img-top {
+                height: 150px;
+            }
+            
+            .card-body {
+                padding: 15px;
+            }
+            
+            .login-card {
+                padding: 15px;
+                margin: 0 10px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* 高分辨率屏幕适配 */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+        
+        /* 横屏模式适配 */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* 志愿者招募页面样式 */
+        .volunteer-card {
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            background: var(--white);
+        }
+        
+        .volunteer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .volunteer-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .volunteer-card p {
+            margin-bottom: 10px;
+        }
+        
+        .volunteer-card .btn {
+            margin-top: 15px;
+        }
+        
+        .volunteer-form {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .volunteer-form h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .form-check {
+            margin-bottom: 15px;
+        }
+        
+        .form-check-label {
+            font-weight: 500;
+        }
+        
+        .loading-spinner {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        /* 志愿者图标样式 */
+        .volunteer-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* 英雄区域样式 */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(233, 76, 61, 0.9), rgba(199, 54, 42, 0.8));
+            z-index: 1;
+        }
+        
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-section h1 {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-section p {
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        /* 数据统计区域样式 */
+        .stats-section {
+            background: var(--light-color);
+            padding: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            transition: var(--transition);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: var(--gray-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面内容 -->
+    <div id="volunteerPage">
+        <!-- 导航栏 -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <i class="fas fa-home text-primary mr-2" style="font-size: 1.5rem;"></i>
+                    <span class="font-weight-bold" style="font-size: 1.25rem;">寻亲网站</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html" id="navHome">
+                                <i class="fas fa-home mr-1"></i> 首页
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="success-cases.html" id="navSuccessCases">
+                                <i class="fas fa-calendar-check mr-1"></i> 成功案例
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="community.html" id="navCommunity">
+                                <i class="fas fa-comments mr-1"></i> 社群交流
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="volunteer.html" id="navVolunteer">
+                                <i class="fas fa-user-volunteer mr-1"></i> 志愿者招募
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mr-2">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <span>登录/注册</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0" style="border-radius: var(--border-radius);">
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="#" id="btnLoginModal">
+                                        <i class="fas fa-sign-in-alt mr-2 text-primary"></i> 登录
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="#" id="btnRegisterModal">
+                                        <i class="fas fa-user-plus mr-2 text-primary"></i> 注册
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 英雄区域 -->
+        <section class="hero-section" style="background-image: url('images/20260311074534177318633414175.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay;">
+            <div class="container">
+                <h1 class="display-4 font-bold mb-4">加入我们的志愿者队伍</h1>
+                <p class="lead mb-6">每一份力量都能帮助一个家庭重聚，每一次付出都能带来希望</p>
+                <a href="#volunteerForm" class="btn btn-light btn-lg">立即报名</a>
+            </div>
+        </section>
+
+        <!-- 数据统计 -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 stat-item">
+                        <div class="stat-number">1,200+</div>
+                        <div class="stat-label">志愿者</div>
+                    </div>
+                    <div class="col-md-4 stat-item">
+                        <div class="stat-number">350+</div>
+                        <div class="stat-label">成功案例</div>
+                    </div>
+                    <div class="col-md-4 stat-item">
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">帮助的家庭</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 志愿者工作内容 -->
+        <section class="py-8">
+            <div class="container">
+                <h2 class="text-center mb-8">志愿者工作内容</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="volunteer-card text-center">
+                            <div class="volunteer-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3 class="mb-3">信息收集与整理</h3>
+                            <p>收集和整理寻亲信息，帮助寻亲者创建详细的寻亲档案，提高匹配成功率。</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="volunteer-card text-center">
+                            <div class="volunteer-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <h3 class="mb-3">线下寻亲活动</h3>
+                            <p>参与线下寻亲活动，分发传单，协助现场登记，扩大寻亲信息的传播范围。</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="volunteer-card text-center">
+                            <div class="volunteer-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3 class="mb-3">在线咨询与支持</h3>
+                            <p>在社群中提供咨询和支持，解答寻亲者的问题，给予情感上的安慰。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 志愿者报名表单 -->
+        <section class="py-8 bg-light" id="volunteerForm">
+            <div class="container">
+                <h2 class="text-center mb-8">志愿者报名</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="volunteer-form">
+                            <form id="volunteerRegisterForm" autocomplete="off">
+                                <!-- 隐藏字段用于欺骗浏览器自动填充 -->
+                                <input type="text" style="display: none;">
+                                <input type="password" style="display: none;">
+                                <div class="form-group">
+                                    <label for="volunteerName">姓名</label>
+                                    <input type="text" class="form-control" id="volunteerName" name="name_volunteer" placeholder="请输入您的姓名" required autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="volunteerUsername">用户名</label>
+                                    <input type="text" class="form-control" id="volunteerUsername" name="username_vol" placeholder="请设置用户名（用于登录）" required autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="volunteerPassword">密码</label>
+                                    <input type="password" class="form-control" id="volunteerPassword" name="password_vol" placeholder="请设置密码（不少于6位）" required autocomplete="new-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="volunteerPhone">联系电话</label>
+                                    <input type="tel" class="form-control" id="volunteerPhone" placeholder="请输入您的联系电话" required autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="volunteerEmail">邮箱</label>
+                                    <input type="email" class="form-control" id="volunteerEmail" placeholder="请输入您的邮箱" required autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="volunteerAge">年龄</label>
+                                    <input type="number" class="form-control" id="volunteerAge" placeholder="请输入您的年龄" required autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="volunteerLocation">所在地区</label>
+                                    <input type="text" class="form-control" id="volunteerLocation" placeholder="请输入您的所在地区" required autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="volunteerSkills">擅长技能</label>
+                                    <select class="form-control" id="volunteerSkills" multiple required>
+                                        <option value="信息收集">信息收集</option>
+                                        <option value="活动组织">活动组织</option>
+                                        <option value="心理咨询">心理咨询</option>
+                                        <option value="社交媒体运营">社交媒体运营</option>
+                                        <option value="法律知识">法律知识</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="volunteerAvailability">可参与时间</label>
+                                    <textarea class="form-control" id="volunteerAvailability" rows="3" placeholder="请描述您的可参与时间" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="volunteerReason">加入原因</label>
+                                    <textarea class="form-control" id="volunteerReason" rows="3" placeholder="请描述您想加入志愿者队伍的原因" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-user-plus"></i> 提交报名
+                                </button>
+                            </form>
+                            <div id="volunteerError" class="alert alert-danger mt-3 d-none"></div>
+                            <div id="volunteerSuccess" class="alert alert-success mt-3 d-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题 -->
+        <section class="py-8">
+            <div class="container">
+                <h2 class="text-center mb-8">常见问题</h2>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq1Heading">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1Collapse" aria-expanded="true" aria-controls="faq1Collapse">
+                                志愿者需要具备什么条件？
+                            </button>
+                        </h2>
+                        <div id="faq1Collapse" class="accordion-collapse collapse show" aria-labelledby="faq1Heading" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                志愿者需要年满18周岁，具有良好的沟通能力和团队合作精神，热爱公益事业，愿意为寻亲事业贡献自己的时间和精力。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq2Heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2Collapse" aria-expanded="false" aria-controls="faq2Collapse">
+                                志愿者需要投入多少时间？
+                            </button>
+                        </h2>
+                        <div id="faq2Collapse" class="accordion-collapse collapse" aria-labelledby="faq2Heading" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                志愿者可以根据自己的时间安排灵活参与，没有固定的时间要求。您可以选择参与线下活动，也可以在线上提供支持。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq3Heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3Collapse" aria-expanded="false" aria-controls="faq3Collapse">
+                                志愿者会接受培训吗？
+                            </button>
+                        </h2>
+                        <div id="faq3Collapse" class="accordion-collapse collapse" aria-labelledby="faq3Heading" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                是的，我们会为志愿者提供相关培训，包括寻亲流程、沟通技巧、信息收集方法等，确保志愿者能够有效地开展工作。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq4Heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4Collapse" aria-expanded="false" aria-controls="faq4Collapse">
+                                如何了解志愿者活动信息？
+                            </button>
+                        </h2>
+                        <div id="faq4Collapse" class="accordion-collapse collapse" aria-labelledby="faq4Heading" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                我们会通过邮件、短信、社交媒体等渠道发布志愿者活动信息，您也可以在社群交流页面查看最新的活动通知。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="bg-dark text-white py-8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <h4>寻亲网站</h4>
+                        <p class="mt-2">让爱回家，让亲情重聚</p>
+                        <div class="mt-4">
+                            <a href="#" class="text-white mr-3"><i class="fab fa-weixin"></i></a>
+                            <a href="#" class="text-white mr-3"><i class="fab fa-weibo"></i></a>
+                            <a href="#" class="text-white"><i class="fab fa-qq"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <h4>快速链接</h4>
+                        <ul class="list-unstyled mt-2">
+                            <li><a href="index.html" class="text-white">首页</a></li>
+                            <li><a href="success-cases.html" class="text-white">成功案例</a></li>
+                            <li><a href="community.html" class="text-white">社群交流</a></li>
+                            <li><a href="volunteer.html" class="text-white">志愿者招募</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>联系我们</h4>
+                        <ul class="list-unstyled mt-2">
+                            <li><i class="fas fa-phone mr-2"></i> 400-123-4567</li>
+                            <li><i class="fas fa-envelope mr-2"></i> contact@xunqin.com</li>
+                            <li><i class="fas fa-map-marker-alt mr-2"></i> 北京市朝阳区建国路88号</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-top border-gray-700 mt-6 pt-6 text-center">
+                    <p>&copy; 2026 寻亲网站 版权所有</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 登录模态框 -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">登录</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="username">用户名</label>
+                            <input type="text" class="form-control" id="username" placeholder="请输入用户名" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">密码</label>
+                            <input type="password" class="form-control" id="password" placeholder="请输入密码" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3 w-100">
+                            <i class="fas fa-sign-in-alt"></i> 登录
+                        </button>
+                        <div class="text-center mt-3">
+                            <small>测试账号：admin / 123456</small>
+                        </div>
+                    </form>
+                    <div id="loginError" class="alert alert-danger mt-3 d-none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">注册</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="regUsername">用户名</label>
+                            <input type="text" class="form-control" id="regUsername" placeholder="请输入用户名" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword">密码</label>
+                            <input type="password" class="form-control" id="regPassword" placeholder="请输入密码" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regRole">角色</label>
+                            <select class="form-control" id="regRole" required>
+                                <option value="SEEKER">寻亲者</option>
+                                <option value="VOLUNTEER">志愿者</option>
+                                <option value="CLUE_PROVIDER">线索提供者</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3 w-100">
+                            <i class="fas fa-user-plus"></i> 注册
+                        </button>
+                    </form>
+                    <div id="registerError" class="alert alert-danger mt-3 d-none"></div>
+                    <div id="registerSuccess" class="alert alert-success mt-3 d-none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_BASE_URL = 'http://localhost:8080';
+        let authToken = localStorage.getItem('authToken') || '';
+        let currentUser = null;
+
+        // 页面加载时检查登录状态
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面加载完成，开始设置事件监听器');
+            
+            // 清空志愿者报名表单，防止浏览器自动填充
+            const volunteerRegisterForm = document.getElementById('volunteerRegisterForm');
+            if (volunteerRegisterForm) {
+                volunteerRegisterForm.reset();
+                
+                // 强制清空每个字段，防止浏览器自动填充
+                document.getElementById('volunteerName').value = '';
+                document.getElementById('volunteerUsername').value = '';
+                document.getElementById('volunteerPassword').value = '';
+                document.getElementById('volunteerPhone').value = '';
+                document.getElementById('volunteerEmail').value = '';
+                document.getElementById('volunteerAge').value = '';
+                document.getElementById('volunteerLocation').value = '';
+                document.getElementById('volunteerSkills').selectedIndex = -1;
+                document.getElementById('volunteerAvailability').value = '';
+                document.getElementById('volunteerReason').value = '';
+                
+                console.log('志愿者报名表单已强制清空');
+            }
+            
+            // 如果有token，尝试获取用户信息
+            if (authToken) {
+                fetchCurrentUser();
+            }
+            
+            setupEventListeners();
+        });
+        
+        // 获取当前用户信息
+        async function fetchCurrentUser() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.code === 200 && result.data) {
+                        currentUser = result.data;
+                        console.log('当前用户信息:', currentUser);
+                    }
+                } else {
+                    // token无效，清除
+                    localStorage.removeItem('authToken');
+                    authToken = '';
+                    currentUser = null;
+                }
+            } catch (error) {
+                console.error('获取用户信息失败:', error);
+            }
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            try {
+                // 登录模态框
+                const loginModalElement = document.getElementById('loginModal');
+                const btnLoginModal = document.getElementById('btnLoginModal');
+                
+                if (loginModalElement && btnLoginModal) {
+                    const loginModal = new bootstrap.Modal(loginModalElement);
+                    btnLoginModal.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('点击登录按钮');
+                        loginModal.show();
+                    });
+                    console.log('登录模态框事件监听器设置成功');
+                } else {
+                    console.error('登录模态框元素未找到');
+                }
+
+                // 注册模态框
+                const registerModalElement = document.getElementById('registerModal');
+                const btnRegisterModal = document.getElementById('btnRegisterModal');
+                
+                if (registerModalElement && btnRegisterModal) {
+                    const registerModal = new bootstrap.Modal(registerModalElement);
+                    btnRegisterModal.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('点击注册按钮');
+                        registerModal.show();
+                    });
+                    console.log('注册模态框事件监听器设置成功');
+                } else {
+                    console.error('注册模态框元素未找到');
+                }
+
+                // 登录表单提交
+                const loginForm = document.getElementById('loginForm');
+                if (loginForm) {
+                    loginForm.addEventListener('submit', async function(e) {
+                        e.preventDefault();
+                        console.log('提交登录表单');
+                        await handleLogin();
+                    });
+                    console.log('登录表单事件监听器设置成功');
+                } else {
+                    console.error('登录表单元素未找到');
+                }
+
+                // 注册表单提交
+                const registerForm = document.getElementById('registerForm');
+                if (registerForm) {
+                    registerForm.addEventListener('submit', async function(e) {
+                        e.preventDefault();
+                        console.log('提交注册表单');
+                        await handleRegister();
+                    });
+                    console.log('注册表单事件监听器设置成功');
+                } else {
+                    console.error('注册表单元素未找到');
+                }
+
+                // 志愿者报名表单提交
+                const volunteerRegisterForm = document.getElementById('volunteerRegisterForm');
+                if (volunteerRegisterForm) {
+                    volunteerRegisterForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        submitVolunteerForm();
+                    });
+                    console.log('志愿者报名表单事件监听器设置成功');
+                } else {
+                    console.error('志愿者报名表单元素未找到');
+                }
+            } catch (error) {
+                console.error('设置事件监听器时出错:', error);
+            }
+        }
+
+        // 提交志愿者报名表单
+        async function submitVolunteerForm() {
+            const name = document.getElementById('volunteerName').value;
+            const username = document.getElementById('volunteerUsername').value;
+            const password = document.getElementById('volunteerPassword').value;
+            const phone = document.getElementById('volunteerPhone').value;
+            const email = document.getElementById('volunteerEmail').value;
+            const age = document.getElementById('volunteerAge').value;
+            const location = document.getElementById('volunteerLocation').value;
+            const skills = Array.from(document.getElementById('volunteerSkills').selectedOptions).map(option => option.value);
+            const availability = document.getElementById('volunteerAvailability').value;
+            const reason = document.getElementById('volunteerReason').value;
+            
+            const successDiv = document.getElementById('volunteerSuccess');
+            const errorDiv = document.getElementById('volunteerError');
+            
+            successDiv.classList.add('d-none');
+            errorDiv.classList.add('d-none');
+            
+            if (!username || username.length < 3) {
+                errorDiv.textContent = '用户名至少需要3个字符';
+                errorDiv.classList.remove('d-none');
+                return;
+            }
+            
+            if (!password || password.length < 6) {
+                errorDiv.textContent = '密码至少需要6个字符';
+                errorDiv.classList.remove('d-none');
+                return;
+            }
+            
+            if (!phone || phone.length !== 11) {
+                errorDiv.textContent = '请输入正确的11位手机号';
+                errorDiv.classList.remove('d-none');
+                return;
+            }
+            
+            try {
+                console.log('准备提交志愿者申请');
+                const response = await fetch(`${API_BASE_URL}/volunteer-application/submit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        username: username,
+                        password: password,
+                        phone: phone,
+                        email: email,
+                        age: age ? parseInt(age) : null,
+                        location: location,
+                        skills: skills.join(','),
+                        availability: availability,
+                        reason: reason
+                    })
+                });
+                
+                console.log('申请响应状态:', response.status);
+                
+                if (!response.ok) {
+                    const errorMsg = response.status === 403 
+                        ? '申请失败，服务器拒绝访问（403）。请检查后端服务是否正常启动。'
+                        : response.status === 404 
+                            ? '申请失败，接口不存在（404）。请检查API地址配置。'
+                            : '申请失败，服务器返回错误: ' + response.status;
+                    errorDiv.textContent = errorMsg;
+                    errorDiv.classList.remove('d-none');
+                    return;
+                }
+                
+                const result = await response.json();
+                console.log('申请响应数据:', result);
+                
+                if (result.code !== 200) {
+                    errorDiv.textContent = result.message || '申请失败，请稍后重试';
+                    errorDiv.classList.remove('d-none');
+                    return;
+                }
+                
+                successDiv.textContent = '申请提交成功！您的志愿者申请已提交，管理员会在1-3个工作日内审核。审核通过后，您将收到短信或邮件通知。';
+                successDiv.classList.remove('d-none');
+                
+                document.getElementById('volunteerRegisterForm').reset();
+                
+            } catch (error) {
+                console.error('提交志愿者申请失败:', error);
+                errorDiv.textContent = '提交失败，请稍后重试';
+                errorDiv.classList.remove('d-none');
+            }
+        }
+
+        // 处理登录
+        async function handleLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+            const loginModalElement = document.getElementById('loginModal');
+
+            errorDiv.classList.add('d-none');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+                
+                if (result.code === 200) {
+                    authToken = result.data.token;
+                    localStorage.setItem('authToken', authToken);
+                    currentUser = result.data.user;
+                    console.log('登录成功，用户:', currentUser.username);
+                    // 关闭登录模态框
+                    const loginModal = bootstrap.Modal.getInstance(loginModalElement);
+                    if (loginModal) {
+                        loginModal.hide();
+                    }
+                    // 显示登录成功提示
+                    alert('登录成功！欢迎 ' + currentUser.username);
+                    // 刷新页面以更新登录状态
+                    window.location.reload();
+                    // 可以在这里跳转到登录后的页面
+                } else {
+                    errorDiv.textContent = result.message || '登录失败';
+                    errorDiv.classList.remove('d-none');
+                }
+            } catch (error) {
+                errorDiv.textContent = '登录请求失败，请稍后重试';
+                errorDiv.classList.remove('d-none');
+            }
+        }
+
+        // 处理注册
+        async function handleRegister() {
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+            const role = document.getElementById('regRole').value;
+            const errorDiv = document.getElementById('registerError');
+            const successDiv = document.getElementById('registerSuccess');
+
+            errorDiv.classList.add('d-none');
+            successDiv.classList.add('d-none');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password, role })
+                });
+
+                const result = await response.json();
+                
+                if (result.code === 200) {
+                    successDiv.textContent = '注册成功，请登录';
+                    successDiv.classList.remove('d-none');
+                    // 清空表单
+                    document.getElementById('regUsername').value = '';
+                    document.getElementById('regPassword').value = '';
+                } else {
+                    errorDiv.textContent = result.message || '注册失败';
+                    errorDiv.classList.remove('d-none');
+                }
+            } catch (error) {
+                errorDiv.textContent = '注册请求失败，请稍后重试';
+                errorDiv.classList.remove('d-none');
+            }
+        }
+    </script>
+</body>
+</html>

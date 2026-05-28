@@ -1,0 +1,30 @@
+# Java
+target/
+*.class
+*.jar
+*.war
+*.log
+
+# Maven
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDE
+.idea/
+*.iml
+.settings/
+.project
+.classpath
+.vscode/
+
+# Node
+node_modules/
+frontend/node/
+frontend/dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads (保留实际文件)
+# uploads/
