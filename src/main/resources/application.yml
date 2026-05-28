@@ -97,10 +97,3 @@ logging:
     com.baomidou.mybatisplus: debug
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"
-
-# AI配置
-ai:
-  deepseek:
-    api:
-      key: sk-5a2c9fe4c2e64ea39b274d02fb59854e
-      url: https://api.deepseek.com/v1/chat/completions
